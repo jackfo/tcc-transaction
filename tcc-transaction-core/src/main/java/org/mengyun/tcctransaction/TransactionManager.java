@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 
 /**
- * Created by changmingxie on 10/26/15.
+ * 事物管理器
  */
 public class TransactionManager {
 
@@ -34,7 +34,7 @@ public class TransactionManager {
     }
 
     public Transaction begin() {
-
+        //创建一个事物
         Transaction transaction = new Transaction(TransactionType.ROOT);
         transactionRepository.create(transaction);
         registerTransaction(transaction);
@@ -64,10 +64,13 @@ public class TransactionManager {
 
     public void commit(boolean asyncCommit) {
 
+        //获取当前事物
         final Transaction transaction = getCurrentTransaction();
 
+        //改变事物的状态
         transaction.changeStatus(TransactionStatus.CONFIRMING);
 
+        //更新事物
         transactionRepository.update(transaction);
 
         if (asyncCommit) {

@@ -53,6 +53,7 @@ public class ZooKeeperTransactionRepository extends CachableTransactionRepositor
     protected int doCreate(Transaction transaction) {
 
         try {
+            //创建一个
             getZk().create(getTxidPath(transaction.getXid()),
                     TransactionSerializer.serialize(serializer, transaction), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
             return 1;

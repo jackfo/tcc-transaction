@@ -17,9 +17,10 @@ import org.mengyun.tcctransaction.utils.ReflectionUtils;
 import java.lang.reflect.Method;
 
 /**
- * Created by changmingxie on 11/8/15.
+ * 资源协调拦截器
  */
 public class ResourceCoordinatorInterceptor {
+
 
     private TransactionManager transactionManager;
 
